@@ -1,0 +1,114 @@
+ingredient_id,ingredient_name,synonyms,hazard_category,risk_level
+1,Sodium Benzoate,E211; benzoic acid salt,Preservative,Medium
+2,Potassium Sorbate,E202,Preservative,Low
+3,Tartrazine,E102; Yellow 5,Artificial Color,High
+4,Sunset Yellow,E110,Artificial Color,High
+5,Allura Red,E129; Red 40,Artificial Color,Medium
+6,Monosodium Glutamate,MSG; E621,Flavor Enhancer,Medium
+7,High Fructose Corn Syrup,HFCS,Added Sugar,High
+8,Refined Sugar,Sucrose; white sugar,Added Sugar,Medium
+9,Aspartame,E951,Artificial Sweetener,Medium
+10,Saccharin,E954,Artificial Sweetener,Low
+11,Sodium Nitrite,E250,Preservative,High
+12,Sodium Nitrate,E251,Preservative,High
+13,BHA,E320,Antioxidant,High
+14,BHT,E321,Antioxidant,Medium
+15,Sodium Chloride,Table salt,Additive,Low
+16,Partially Hydrogenated Oil,Trans fat,Fat,High
+17,Palm Oil,,Fat,Medium
+18,Carrageenan,,Thickener,Medium
+19,Xanthan Gum,,Thickener,Low
+20,Sucralose,E955,Artificial Sweetener,Medium
+21,Titanium Dioxide,E171,Colorant,Medium
+22,Sodium Metabisulfite,E223,Preservative,High
+23,Acetylated Distarch Adipate,E1422,Modified Starch,Low
+24,Amaranth,E123,Artificial Color,High
+25,Annatto,Bixin; Norbixin,Natural Color,Low
+26,Azodicarbonamide,ADA,Dough Conditioner,High
+27,Calcium Propionate,E282,Preservative,Medium
+28,Calcium Sorbate,E203,Preservative,Low
+29,Caramel Color,Class III; E150c,Colorant,Medium
+30,Carboxymethyl Cellulose,CMC; E466,Thickener,Low
+31,Cochineal,Carminic acid; E120,Colorant,Medium
+32,Disodium Phosphate,E339,Acidity Regulator,Low
+33,FD&C Blue No.1,Brilliant Blue; E133,Artificial Color,Medium
+34,FD&C Green No.3,Fast Green; E143,Artificial Color,Medium
+35,Ferrous Sulfate,E515,Fortificant,Low
+36,Folic Acid,Vitamin B9,Fortificant,Low
+37,Fumaric Acid,E297,Acidity Regulator,Low
+38,Gellan Gum,E418,Thickener,Low
+39,Glucose Syrup,,Added Sugar,High
+40,Guar Gum,E412,Thickener,Low
+41,Hydrogenated Vegetable Oil,,Fat,High
+42,Lactic Acid,E270,Acidity Regulator,Low
+43,Lactose,Milk Sugar,Allergen,Medium
+44,Malic Acid,E296,Acidity Regulator,Low
+45,Manganese Sulfate,,Fortificant,Low
+46,Microcrystalline Cellulose,E460,Bulking Agent,Low
+47,Natamycin,E235,Preservative,Medium
+48,Nisin,E234,Preservative,Low
+49,Phosphoric Acid,E338,Acidity Regulator,Medium
+50,Potassium Bromate,,Flour Improver,High
+51,Potassium Chloride,E508,Salt Substitute,Low
+52,Potassium Metabisulfite,E224,Preservative,High
+53,Potassium Nitrite,E249,Preservative,High
+54,Propyl Gallate,E310,Antioxidant,Medium
+55,Red 3,Erythrosine; E127,Artificial Color,High
+56,Silica,Silicon Dioxide; E551,Anti-caking Agent,Low
+57,Sodium Ascorbate,E301,Antioxidant,Low
+58,Sodium Bromate,,Oxidizing Agent,High
+59,Sodium Citrate,E331,Acidity Regulator,Low
+60,Sodium Dehydroacetate,E266,Preservative,Medium
+61,Sodium Stearoyl Lactylate,E481,Emulsifier,Low
+62,Sorbic Acid,E200,Preservative,Low
+63,Sulfur Dioxide,E220,Preservative,High
+64,Tocopherol,Vitamin E,Antioxidant,Low
+65,Trisodium Phosphate,E339iii,Acidity Regulator,Medium
+66,Vanillin,Synthetic Vanilla Flavor,Flavoring,Low
+67,Zinc Sulfate,,Mineral Additive,Low
+ingredient_id,ingredient_name,synonyms,hazard_category,risk_level
+68,Sugar,Sucrose; Added Sugar,Added Sugar,Medium
+69,Invert Sugar,Inverted Sugar Syrup,Added Sugar,Medium
+70,Liquid Glucose,Glucose Syrup,Added Sugar,High
+71,Dextrose,Glucose,Added Sugar,Medium
+72,Palmolein,Palm Oil Fraction,Fat,Medium
+73,Palm Fat,,Fat,Medium
+74,Fractionated Fat,,Processed Fat,Medium
+75,Edible Vegetable Fat,,Processed Fat,Medium
+76,INS 322,Lecithin,Emulsifier,Low
+77,INS 442,Ammonium Phosphatides,Emulsifier,Medium
+78,INS 476,Polyglycerol Polyricinoleate,Emulsifier,Medium
+79,INS 500(ii),Sodium Bicarbonate,Raising Agent,Low
+80,INS 503(ii),Ammonium Bicarbonate,Raising Agent,Low
+81,INS 338,Phosphoric Acid,Acidity Regulator,Medium
+82,INS 202,Potassium Sorbate,Preservative,Low
+83,INS 211,Sodium Benzoate,Preservative,Medium
+84,INS 950,Acesulfame Potassium,Artificial Sweetener,Medium
+85,INS 150a,Caramel Color Class I,Colorant,Low
+86,INS 150d,Caramel Color Class IV,Colorant,Medium
+87,Ethyl Vanillin,,Artificial Flavor,Medium
+88,Artificial Flavours,Synthetic Flavouring Substances,Flavor Additive,Medium
+89,Nature Identical Flavour,Nature-Identical Flavoring Substances,Flavor Additive,Medium
+90,Flavour Enhancer 627,Disodium Guanylate,Flavor Enhancer,Medium
+91,Flavour Enhancer 631,Disodium Inosinate,Flavor Enhancer,Medium
+92,Flavour Enhancer 635,Disodium 5'-Ribonucleotides,Flavor Enhancer,Medium
+93,Hydrolysed Vegetable Protein,HVP,Flavor Enhancer,Medium
+94,Maltodextrin,,Bulking Agent,Medium
+95,Acidity Regulator 330,Citric Acid,Acidity Regulator,Low
+96,Acidity Regulator 296,Malic Acid,Acidity Regulator,Low
+97,Acidity Regulator 334,Tartaric Acid,Acidity Regulator,Low
+98,Acidity Regulator 262(i),Sodium Acetate,Acidity Regulator,Low
+99,Anticaking Agent 551,Silicon Dioxide,Anti-caking Agent,Low
+100,Colour 160c,Paprika Extract,Colorant,Low
+101,INS 451(i),Triphosphates,Humectant,Medium
+102,INS 508,Potassium Chloride,Mineral Additive,Low
+103,INS 412,Guar Gum,Thickener,Low
+104,INS 501(i),Potassium Carbonate,Acidity Regulator,Low
+105,INS 500(i),Sodium Carbonate,Acidity Regulator,Low
+106,INS 415,Xanthan Gum,Thickener,Low
+107,Caffeine,,Stimulant,Medium
+108,Taurine,,Stimulant,Medium
+109,Artificial Colour,,Colorant,Medium
+110,Nature Identical Flavouring Substances,,Flavor Additive,Medium
+111,Hydrolysed Groundnut Protein,,Flavor Enhancer,Medium
+112,Cheese Powder Analogue,,Processed Dairy Additive,Medium
