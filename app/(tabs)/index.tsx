@@ -5,10 +5,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 
 export default function HomeScreen() {
+  const { width } = useWindowDimensions();
+  const isDesktop = width >= 768;
+
   return (
     <ScrollView
       style={styles.container}
@@ -23,7 +27,7 @@ export default function HomeScreen() {
           <Ionicons name="shield-checkmark" size={36} color="#fff" />
         </LinearGradient>
 
-        <Text style={styles.title}>
+        <Text style={[styles.title, { fontSize: isDesktop ? 50 : 32 }]}>
           AI-Driven Safety Prediction{"\n"}
           <Text style={styles.titleBlue}>for Drugs & Food</Text>
         </Text>
@@ -33,7 +37,12 @@ export default function HomeScreen() {
           hazardous food ingredients with confidence scoring.
         </Text>
 
-        <View style={styles.buttonRow}>
+        <View
+          style={[
+            styles.buttonRow,
+            { flexDirection: isDesktop ? "row" : "column" },
+          ]}
+        >
           <TouchableOpacity style={styles.primaryBtn}>
             <Ionicons name="medkit" size={18} color="#fff" />
             <Text style={styles.primaryText}> Check Drug Interactions</Text>
@@ -48,14 +57,20 @@ export default function HomeScreen() {
 
       {/* FEATURES */}
       <View style={styles.featuresSection}>
-        <Text style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, { fontSize: isDesktop ? 40 : 24 }]}>
           Trusted by Researchers & Healthcare Professionals
         </Text>
+
         <Text style={styles.sectionSubtitle}>
           Advanced ML technology for critical safety decisions
         </Text>
 
-        <View style={styles.featuresRow}>
+        <View
+          style={[
+            styles.featuresRow,
+            { flexDirection: isDesktop ? "row" : "column" },
+          ]}
+        >
           {[
             {
               icon: "hardware-chip",
@@ -84,22 +99,40 @@ export default function HomeScreen() {
               >
                 <Ionicons name={f.icon as any} size={22} color="#fff" />
               </LinearGradient>
-              <Text style={styles.cardTitle}>{f.title}</Text>
-              <Text style={styles.cardText}>{f.text}</Text>
+
+              <Text
+                style={[styles.cardTitle, { fontSize: isDesktop ? 24 : 18 }]}
+              >
+                {f.title}
+              </Text>
+
+              <Text
+                style={[styles.cardText, { fontSize: isDesktop ? 18 : 14 }]}
+              >
+                {f.text}
+              </Text>
             </LinearGradient>
           ))}
         </View>
       </View>
 
       {/* STATS */}
-      <LinearGradient colors={["#E5EDF1", "#FFFFFF"]} style={styles.statsRow}>
+      <LinearGradient
+        colors={["#E5EDF1", "#FFFFFF"]}
+        style={[
+          styles.statsRow,
+          { flexDirection: isDesktop ? "row" : "column" },
+        ]}
+      >
         {[
           { value: "99.2%", label: "Prediction Accuracy" },
           { value: "50K+", label: "Drug Combinations Analyzed" },
           { value: "10K+", label: "Food Ingredients Tested" },
         ].map((s, i) => (
           <View key={i} style={styles.statBlock}>
-            <Text style={styles.statValue}>{s.value}</Text>
+            <Text style={[styles.statValue, { fontSize: isDesktop ? 40 : 28 }]}>
+              {s.value}
+            </Text>
             <Text style={styles.statLabel}>{s.label}</Text>
           </View>
         ))}
@@ -129,7 +162,6 @@ const styles = StyleSheet.create({
 
   title: {
     fontFamily: "Poppins-Bold",
-    fontSize: 50,
     textAlign: "center",
     color: "#1F2A33",
   },
@@ -145,7 +177,6 @@ const styles = StyleSheet.create({
   },
 
   buttonRow: {
-    flexDirection: "row",
     gap: 14,
   },
 
@@ -176,7 +207,6 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     fontFamily: "Poppins-Bold",
-    fontSize: 40,
     textAlign: "center",
     marginBottom: 8,
   },
@@ -189,7 +219,6 @@ const styles = StyleSheet.create({
   },
 
   featuresRow: {
-    flexDirection: "row",
     justifyContent: "space-between",
     gap: 18,
   },
@@ -209,19 +238,34 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  cardTitle: { fontFamily: "Poppins-SemiBold", fontSize: 24, marginBottom: 4 },
+  cardTitle: {
+    fontFamily: "Poppins-SemiBold",
+    marginBottom: 4,
+  },
 
-  cardText: { fontFamily: "Poppins", fontSize: 18, color: "#4B5B66" },
+  cardText: {
+    fontFamily: "Poppins",
+    color: "#4B5B66",
+  },
 
   statsRow: {
-    flexDirection: "row",
     justifyContent: "space-around",
     paddingVertical: 40,
   },
 
-  statBlock: { alignItems: "center" },
+  statBlock: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
 
-  statValue: { fontFamily: "Poppins-Bold", fontSize: 40, color: "#6B9AC4" },
+  statValue: {
+    fontFamily: "Poppins-Bold",
+    color: "#6B9AC4",
+  },
 
-  statLabel: { fontFamily: "Poppins", fontSize: 16, color: "#4B5B66" },
+  statLabel: {
+    fontFamily: "Poppins",
+    fontSize: 16,
+    color: "#4B5B66",
+  },
 });
