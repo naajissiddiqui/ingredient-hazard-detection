@@ -1,18 +1,57 @@
-import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import React, { useEffect, useRef } from "react";
 import {
-  View,
+  Animated,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
+  View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 
 export default function ScanCategoryScreen() {
   const router = useRouter();
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+
+  // Fade animation
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  const AnimatedCard = ({ children }: any) => (
+    <Animated.View
+      style={{
+        opacity: fadeAnim,
+        transform: [
+          {
+            translateY: fadeAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [30, 0],
+            }),
+          },
+        ],
+      }}
+    >
+      {children}
+    </Animated.View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,18 +59,14 @@ export default function ScanCategoryScreen() {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.replace("/")}
-        >
-          <Ionicons name="chevron-back" size={28} color="#000" />
+        <TouchableOpacity onPress={() => router.replace("/")}>
+          <Ionicons name="chevron-back" size={28} color="#1F2A33" />
         </TouchableOpacity>
 
         <Text style={styles.headerTitle}>Scan Category</Text>
-        <View style={styles.placeholder} />
+        <View style={{ width: 30 }} />
       </View>
 
-      {/* Scrollable Content */}
       <ScrollView
         style={styles.content}
         contentContainerStyle={{ paddingBottom: 40 }}
@@ -41,85 +76,71 @@ export default function ScanCategoryScreen() {
         <View style={styles.titleSection}>
           <Text style={styles.mainTitle}>What are you scanning?</Text>
           <Text style={styles.subtitle}>
-            Select a category to get the most accurate ingredient analysis for
-            your product.
+            Select a category to get the most accurate ingredient analysis.
           </Text>
         </View>
 
-        {/* Food */}
-        <View style={styles.categoryCard}>
-          <View style={styles.categoryHeader}>
-            <View style={styles.iconCircle}>
-              <Ionicons name="fast-food" size={28} color="#007AFF" />
+        {/* FOOD CARD */}
+        <AnimatedCard>
+          <View style={styles.categoryCard}>
+            <View style={styles.categoryHeader}>
+              <View style={styles.iconCircle}>
+                <Ionicons name="fast-food" size={28} color="#6B9AC4" />
+              </View>
+
+              <View style={{ flex: 1 }}>
+                <Text style={styles.categoryTitle}>Scan Food Products</Text>
+                <Text style={styles.categoryDescription}>
+                  Check for additives, sugars, and allergens.
+                </Text>
+              </View>
             </View>
-            <View style={styles.categoryTextContainer}>
-              <Text style={styles.categoryTitle}>Scan Food Products</Text>
-              <Text style={styles.categoryDescription}>
-                Check for additives, sugars, and allergens.
-              </Text>
+
+            <View style={styles.imagePlaceholderFood}>
+              <Ionicons name="nutrition" size={60} color="#fff" />
             </View>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.selectButton}
+              onPress={() => router.push("/scan/food")}
+            >
+              <Text style={styles.selectButtonText}>Select Food</Text>
+              <Ionicons name="arrow-forward" size={20} color="#fff" />
+            </TouchableOpacity>
           </View>
+        </AnimatedCard>
 
-          <View style={styles.imageContainer}>
-            <View style={styles.foodImagePlaceholder}>
-              <Ionicons name="nutrition" size={60} color="#FFFFFF" />
+        {/* COSMETIC CARD */}
+        <AnimatedCard>
+          <View style={styles.categoryCard}>
+            <View style={styles.categoryHeader}>
+              <View style={styles.iconCircle}>
+                <Ionicons name="water" size={28} color="#6B9AC4" />
+              </View>
+
+              <View style={{ flex: 1 }}>
+                <Text style={styles.categoryTitle}>Scan Personal Care</Text>
+                <Text style={styles.categoryDescription}>
+                  Analyze toxins and irritants in skincare.
+                </Text>
+              </View>
             </View>
-          </View>
 
-          <TouchableOpacity
-            style={styles.selectButton}
-            onPress={() => router.push("/scan/food")}
-          >
-            <Text style={styles.selectButtonText}>Select Food</Text>
-            <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
-          </TouchableOpacity>
-        </View>
-
-        {/* Personal Care */}
-        <View style={styles.categoryCard}>
-          <View style={styles.categoryHeader}>
-            <View style={styles.iconCircle}>
-              <Ionicons name="water" size={28} color="#007AFF" />
+            <View style={styles.imagePlaceholderCare}>
+              <Ionicons name="sparkles" size={50} color="#fff" />
             </View>
-            <View style={styles.categoryTextContainer}>
-              <Text style={styles.categoryTitle}>Scan Personal Care</Text>
-              <Text style={styles.categoryDescription}>
-                Analyze toxins and irritants in skincare.
-              </Text>
-            </View>
-          </View>
 
-          <View style={styles.imageContainer}>
-            <View style={styles.personalCareImagePlaceholder}>
-              <Ionicons name="sparkles" size={50} color="#FFFFFF" />
-            </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.selectButton}
+              onPress={() => router.push("/scan/cosmetic")}
+            >
+              <Text style={styles.selectButtonText}>Select Personal Care</Text>
+              <Ionicons name="arrow-forward" size={20} color="#fff" />
+            </TouchableOpacity>
           </View>
-
-          <TouchableOpacity
-            style={styles.selectButton}
-            onPress={() => router.push("/scan/cosmetic")}
-          >
-            <Text style={styles.selectButtonText}>
-              Select Personal Care
-            </Text>
-            <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
-          </TouchableOpacity>
-        </View>
-
-        {/* Info */}
-        <View style={styles.bottomInfo}>
-          <Ionicons
-            name="information-circle"
-            size={20}
-            color="#007AFF"
-            style={{ marginRight: 12, marginTop: 2 }}
-          />
-          <View style={{ flex: 1 }}>
-            <Text style={styles.infoText}>
-              Point your camera at the barcode for instant analysis.
-            </Text>
-          </View>
-        </View>
+        </AnimatedCard>
       </ScrollView>
     </SafeAreaView>
   );
@@ -128,118 +149,116 @@ export default function ScanCategoryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F7",
+    backgroundColor: "#E5EDF1",
   },
+
   header: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#fff",
   },
-  backButton: {
-    padding: 4,
-  },
+
   headerTitle: {
+    fontFamily: "Poppins-SemiBold",
     fontSize: 18,
-    fontWeight: "600",
-    color: "#000",
+    color: "#1F2A33",
   },
-  placeholder: {
-    width: 36,
-  },
+
   content: {
-    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
   },
+
   titleSection: {
     marginBottom: 30,
   },
+
   mainTitle: {
-    fontSize: 32,
-    fontWeight: "700",
-    color: "#000",
-    marginBottom: 12,
+    fontFamily: "Poppins-Bold",
+    fontSize: 28,
+    color: "#1F2A33",
+    marginBottom: 10,
   },
+
   subtitle: {
-    fontSize: 16,
-    color: "#666",
-    lineHeight: 24,
+    fontFamily: "Poppins",
+    fontSize: 15,
+    color: "#4B5B66",
   },
+
   categoryCard: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
-    elevation: 3,
+
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
+
   categoryHeader: {
     flexDirection: "row",
     marginBottom: 16,
   },
+
   iconCircle: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: "#E3F2FD",
-    alignItems: "center",
+    backgroundColor: "#E5EDF1",
     justifyContent: "center",
+    alignItems: "center",
     marginRight: 12,
   },
-  categoryTextContainer: {
-    flex: 1,
-  },
+
   categoryTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    marginBottom: 4,
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 18,
+    color: "#1F2A33",
   },
+
   categoryDescription: {
-    fontSize: 15,
-    color: "#666",
+    fontFamily: "Poppins",
+    fontSize: 14,
+    color: "#4B5B66",
   },
-  imageContainer: {
+
+  imagePlaceholderFood: {
+    height: 140,
+    backgroundColor: "#6B9AC4",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 16,
   },
-  foodImagePlaceholder: {
+
+  imagePlaceholderCare: {
     height: 140,
-    backgroundColor: "#4A7C59",
+    backgroundColor: "#96C2DB",
     borderRadius: 16,
-    alignItems: "center",
     justifyContent: "center",
-  },
-  personalCareImagePlaceholder: {
-    height: 140,
-    backgroundColor: "#D4A484",
-    borderRadius: 16,
     alignItems: "center",
-    justifyContent: "center",
+    marginBottom: 16,
   },
+
   selectButton: {
-    backgroundColor: "#007AFF",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "#6B9AC4",
     paddingVertical: 16,
     borderRadius: 14,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     gap: 8,
   },
+
   selectButtonText: {
-    color: "#FFFFFF",
-    fontSize: 17,
-    fontWeight: "600",
-  },
-  bottomInfo: {
-    flexDirection: "row",
-    backgroundColor: "#FFFFFF",
-    padding: 16,
-    borderRadius: 16,
-    marginTop: 10,
-  },
-  infoText: {
-    fontSize: 14,
-    color: "#666",
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 16,
+    color: "#fff",
   },
 });
