@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,101 +14,99 @@ import {
 
 export default function CosmeticScanOptionsScreen() {
   const router = useRouter();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
 
-      {/* Header */}
+      {/* HEADER */}
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="chevron-back" size={28} color="#2563EB" />
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="chevron-back" size={28} color="#6B9AC4" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Cosmetics Scan</Text>
-        <View style={styles.placeholder} />
+        <Text style={styles.headerTitle}>Cosmetic Scan</Text>
+        <View style={{ width: 30 }} />
       </View>
 
-      <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Hero Section */}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* HERO */}
         <View style={styles.heroSection}>
           <View style={styles.iconContainer}>
-            <Ionicons name="sparkles" size={50} color="#2563EB" />
+            <Ionicons name="sparkles" size={48} color="#6B9AC4" />
           </View>
-          <Text style={styles.title}>Check Beauty Product Safety</Text>
+
+          <Text style={styles.title}>Check Product Safety</Text>
+
           <Text style={styles.subtitle}>
             Scan your cosmetic products to detect harmful chemicals and skin
             irritants instantly.
           </Text>
         </View>
 
-        {/* Scan by Barcode */}
+        {/* CARD 1 */}
         <View style={styles.card}>
-          <View style={styles.cardContent}>
-            <View style={styles.cardLeft}>
+          <View style={styles.cardRow}>
+            <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>Scan by Barcode</Text>
               <Text style={styles.cardDescription}>
                 Instantly analyze product safety ratings.
               </Text>
 
               <TouchableOpacity
+                activeOpacity={0.85}
                 style={styles.primaryButton}
-                onPress={() => router.push("/scan/cosmetics")}
+                onPress={() => router.push("/scan/cosmetic")}
               >
                 <Text style={styles.primaryButtonText}>Scan Now</Text>
-                <Ionicons name="barcode-outline" size={22} color="#FFFFFF" />
+                <Ionicons name="barcode-outline" size={22} color="#fff" />
               </TouchableOpacity>
             </View>
 
-            <View style={styles.cardRight}>
-              <View style={styles.iconBox}>
-                <Ionicons name="barcode" size={70} color="#333" />
-              </View>
+            <View style={styles.iconBox}>
+              <Ionicons name="barcode" size={70} color="#6B9AC4" />
             </View>
           </View>
         </View>
 
-        {/* Scan Ingredient Label */}
+        {/* CARD 2 */}
         <View style={styles.card}>
-          <View style={styles.cardContent}>
-            <View style={styles.cardLeft}>
+          <View style={styles.cardRow}>
+            <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>Scan Ingredient Label</Text>
               <Text style={styles.cardDescription}>
                 Detect parabens, sulfates & harmful ingredients.
               </Text>
 
               <TouchableOpacity
+                activeOpacity={0.85}
                 style={styles.secondaryButton}
-                onPress={() => router.push("/scan/cosmetics")}
+                onPress={() => router.push("/scan/cosmetic")}
               >
                 <Text style={styles.secondaryButtonText}>Scan Label</Text>
                 <Ionicons
                   name="document-text-outline"
                   size={22}
-                  color="#2563EB"
+                  color="#6B9AC4"
                 />
               </TouchableOpacity>
             </View>
 
-            <View style={styles.cardRight}>
-              <View style={styles.roundIconBox}>
-                <Ionicons name="flask" size={60} color="#fff" />
-              </View>
+            <View style={styles.iconBoxDark}>
+              <Ionicons name="flask" size={60} color="#fff" />
             </View>
           </View>
         </View>
 
-        {/* Help */}
-        <TouchableOpacity style={styles.helpLink}>
+        {/* HELP */}
+        <TouchableOpacity activeOpacity={0.7} style={styles.helpLink}>
           <Text style={styles.helpText}>How does cosmetic scanning work?</Text>
-          <Ionicons name="help-circle-outline" size={20} color="#2563EB" />
+          <Ionicons name="help-circle-outline" size={20} color="#6B9AC4" />
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -117,35 +116,25 @@ export default function CosmeticScanOptionsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#EAF2FF", // light blue background
+    backgroundColor: "#E5EDF1",
   },
 
   header: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: "#FFFFFF",
-  },
-
-  backButton: {
-    padding: 4,
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#fff",
   },
 
   headerTitle: {
+    fontFamily: "Poppins-SemiBold",
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1E3A8A", // dark blue
-  },
-
-  placeholder: {
-    width: 36,
+    color: "#1F2A33",
   },
 
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 30,
+    padding: 24,
     paddingBottom: 60,
   },
 
@@ -155,127 +144,124 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     borderRadius: 50,
-    backgroundColor: "#DBEAFE", // soft blue
-    alignItems: "center",
+    backgroundColor: "#E5EDF1",
     justifyContent: "center",
-    marginBottom: 20,
+    alignItems: "center",
+    marginBottom: 18,
   },
 
   title: {
+    fontFamily: "Poppins-Bold",
     fontSize: 26,
-    fontWeight: "700",
-    textAlign: "center",
+    color: "#1F2A33",
     marginBottom: 10,
-    color: "#1E3A8A",
+    textAlign: "center",
   },
 
   subtitle: {
+    fontFamily: "Poppins",
     fontSize: 15,
-    color: "#475569",
+    color: "#4B5B66",
     textAlign: "center",
-    lineHeight: 22,
-    paddingHorizontal: 10,
+    lineHeight: 24,
   },
 
   card: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
-    elevation: 3,
+
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
   },
 
-  cardContent: {
+  cardRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
-  },
-
-  cardLeft: {
-    flex: 1,
-    paddingRight: 10,
+    alignItems: "center",
   },
 
   cardTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    marginBottom: 8,
-    color: "#1E3A8A",
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 18,
+    color: "#1F2A33",
+    marginBottom: 6,
   },
 
   cardDescription: {
-    fontSize: 15,
-    color: "#64748B",
+    fontFamily: "Poppins",
+    fontSize: 14,
+    color: "#4B5B66",
     marginBottom: 16,
   },
 
-  primaryButton: {
-    backgroundColor: "#2563EB", // main blue
-    flexDirection: "row",
+  iconBox: {
+    width: 90,
+    height: 90,
+    borderRadius: 16,
+    backgroundColor: "#F5F8FB",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  iconBoxDark: {
+    width: 90,
+    height: 90,
+    borderRadius: 16,
+    backgroundColor: "#6B9AC4",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  primaryButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6B9AC4",
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: 14,
     gap: 8,
   },
 
   primaryButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "600",
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 15,
+    color: "#fff",
   },
 
   secondaryButton: {
-    backgroundColor: "#DBEAFE", // light blue
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#E5EDF1",
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: 14,
     gap: 8,
   },
 
   secondaryButtonText: {
-    color: "#2563EB",
-    fontSize: 16,
-    fontWeight: "600",
-  },
-
-  cardRight: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  iconBox: {
-    width: 100,
-    height: 100,
-    backgroundColor: "#F1F5F9",
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  roundIconBox: {
-    width: 100,
-    height: 100,
-    backgroundColor: "#2563EB",
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 15,
+    color: "#6B9AC4",
   },
 
   helpLink: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10,
+    alignItems: "center",
     gap: 6,
+    marginTop: 10,
   },
 
   helpText: {
-    fontSize: 16,
-    color: "#2563EB",
-    fontWeight: "500",
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 15,
+    color: "#6B9AC4",
   },
 });
