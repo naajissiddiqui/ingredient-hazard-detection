@@ -41,3 +41,8 @@ app-example
 # generated native folders
 /ios
 /android
+
+*venv/
+backend/ingredient_hazard_model/
+__pycache__/
+
