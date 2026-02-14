@@ -1,11 +1,12 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function BarcodeScannerScreen() {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
-
+  const router = useRouter();
   if (!permission) {
     return <View />;
   }
@@ -35,11 +36,41 @@ export default function BarcodeScannerScreen() {
         const ingredients = json.product.ingredients_text;
 
         console.log("Ingredients:", ingredients);
+
+        console.log("Calling backend...");
+
+        const backendResponse = await fetch(
+          "http://192.168.1.104:8000/analyze",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ingredients: ingredients,
+            }),
+          },
+        );
+
+        console.log("Backend status:", backendResponse.status);
+
+        const result = await backendResponse.json();
+
+        console.log("Backend result:", result);
+
+        console.log("Navigating now...");
+
+        router.replace({
+          pathname: "/scan/results",
+          params: {
+            analysis: JSON.stringify(result),
+          },
+        });
       } else {
         console.log("Product not found");
       }
     } catch (error) {
-      console.log("Error fetching product:", error);
+      console.log("BACKEND ERROR:", error);
     }
   };
 
