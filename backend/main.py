@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
+import re
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
 app = FastAPI()
@@ -28,6 +29,30 @@ label_names = [
 class IngredientInput(BaseModel):
     ingredients: str
 
+
+# -------- CLEANING FUNCTION --------
+def clean_ingredients(text):
+    text = text.lower()
+
+    # Replace new lines with commas
+    text = text.replace("\n", ",")
+
+    # Remove extra spaces
+    text = re.sub(r"\s+", " ", text)
+
+    # Remove double commas
+    text = re.sub(r",+", ",", text)
+
+    # Remove unwanted characters (keep letters, numbers, spaces and commas)
+    text = re.sub(r"[^a-z0-9, ]", "", text)
+
+    # Split properly
+    ingredients = [i.strip() for i in text.split(",") if i.strip()]
+
+    return ingredients
+
+
+# -------- MODEL ANALYSIS --------
 def analyze_ingredient(ingredient, position):
     inputs = tokenizer(
         ingredient,
@@ -45,13 +70,13 @@ def analyze_ingredient(ingredient, position):
     hazards = []
 
     for i, p in enumerate(probs):
-        if p >= 0.6:
+        if p >= 0.5:   # lowered threshold slightly from 0.6
             hazards.append({
                 "label": label_names[i],
-                "confidence": float(p)
+                "confidence": float(round(p, 3))
             })
 
-    # Position weighting (example rule)
+    # Position weighting
     if position <= 1:
         for h in hazards:
             if h["label"] == "added_sugar":
@@ -59,13 +84,21 @@ def analyze_ingredient(ingredient, position):
 
     return hazards
 
+
+# -------- API ENDPOINT --------
 @app.post("/analyze")
 def analyze(data: IngredientInput):
-    ingredients = [i.strip() for i in data.ingredients.split(",")]
+
+    raw_text = data.ingredients
+
+    # Clean input
+    ingredients_list = clean_ingredients(raw_text)
+
+    print("Cleaned ingredients:", ingredients_list)
 
     results = []
 
-    for idx, ing in enumerate(ingredients):
+    for idx, ing in enumerate(ingredients_list):
         hazards = analyze_ingredient(ing, idx)
 
         if hazards:
@@ -77,5 +110,5 @@ def analyze(data: IngredientInput):
 
     return {
         "harmful_ingredients": results,
-        "total_ingredients": len(ingredients)
+        "total_ingredients": len(ingredients_list)
     }
