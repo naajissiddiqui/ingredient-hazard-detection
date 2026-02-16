@@ -46,3 +46,4 @@ app-example
 backend/ingredient_hazard_model/
 __pycache__/
 
+backend/distilbert-base-uncased/
