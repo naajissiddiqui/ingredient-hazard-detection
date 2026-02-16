@@ -7,7 +7,7 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 app = FastAPI()
 
 # ---- Load Model Once ----
-model_path = "ingredient_hazard_model"
+model_path = "naajissiddiqui/ingredient-hazard-distilbert"
 
 tokenizer = DistilBertTokenizerFast.from_pretrained(model_path)
 model = DistilBertForSequenceClassification.from_pretrained(model_path)
