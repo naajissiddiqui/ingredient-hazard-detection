@@ -1,6 +1,6 @@
-import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import {
   SafeAreaView,
@@ -86,7 +86,7 @@ export default function FoodScanOptionsScreen() {
               <TouchableOpacity
                 activeOpacity={0.85}
                 style={styles.secondaryButton}
-                onPress={() => router.push("/(tabs)/scan/ocr")}
+                onPress={() => router.push("/scan/food")}
               >
                 <Text style={styles.secondaryButtonText}>Scan Label</Text>
                 <Ionicons
