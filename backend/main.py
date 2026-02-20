@@ -3,12 +3,6 @@ from pydantic import BaseModel
 import torch
 import re
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
-#Updated code for OCR
-from fastapi import UploadFile, File
-import easyocr
-import numpy as np
-from PIL import Image
-import io
 
 app = FastAPI()
 
@@ -21,9 +15,6 @@ model = DistilBertForSequenceClassification.from_pretrained(model_path)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 model.eval()
-
-# ---- Load EasyOCR once ----
-ocr_reader = easyocr.Reader(['en'], gpu=False) #updated code for OCR
 
 label_names = [
     "added_sugar",
@@ -121,22 +112,3 @@ def analyze(data: IngredientInput):
         "harmful_ingredients": results,
         "total_ingredients": len(ingredients_list)
     }
-
-#updated code for OCR
-@app.post("/ocr-analyze")
-async def ocr_analyze(file: UploadFile = File(...)):
-    try:
-        contents = await file.read()
-
-        # Convert image
-        image = Image.open(io.BytesIO(contents)).convert("RGB")
-        image_np = np.array(image)
-
-        # OCR
-        results = ocr_reader.readtext(image_np)
-        extracted_text = " ".join([r[1] for r in results])
-
-        return {"extracted_text": extracted_text}
-
-    except Exception as e:
-        return {"error": str(e)}
