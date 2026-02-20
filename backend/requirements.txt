@@ -7,3 +7,7 @@ pandas
 torch
 transformers
 huggingface_hub
+easyocr
+opencv-python
+python-multipart
+Pillow
