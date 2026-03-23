@@ -84,7 +84,6 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 ### 4️⃣ Frontend Setup
 
 ```bash
-cd ../frontend
 npm install
 npx expo start
 ```
@@ -105,16 +104,6 @@ const API_BASE_URL = "http://YOUR_IP:8000";
 
 ---
 
-## 🤖 Models Used
-
-* Food Model:
-  `naajissiddiqui/ingredient-hazard-distilbert`
-
-* Cosmetic Model:
-  `naajissiddiqui/personalcare_detection`
-
----
-
 ## 🔄 System Flow
 
 1. User scans barcode OR uploads image
@@ -130,24 +119,9 @@ const API_BASE_URL = "http://YOUR_IP:8000";
 
 * Ensure phone and backend are on same network (for local testing)
 * First model load may take time (downloads from HuggingFace)
-* Recommended to run once before demo
-
+  
 ---
 
-## 📌 Future Improvements
-
-* Multilingual ingredient detection
-* Cloud deployment (no local backend needed)
-* Explainable AI insights
-* Personalized health recommendations
-
----
-
-## 👨‍💻 Author
-
-Naajis Siddiqui
-
----
 
 ## 📄 License
 
