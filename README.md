@@ -1,50 +1,155 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# 🧪 Ingredient Hazard Detection App
 
-## Get started
+An AI-powered mobile application that analyzes food and personal care products to detect harmful ingredients using barcode scanning and OCR.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🚀 Features
 
-2. Start the app
+* 📷 **Barcode Scanning**
 
-   ```bash
-   npx expo start
-   ```
+  * Fetches product data from OpenFoodFacts / OpenBeautyFacts
+  * Extracts ingredient list automatically
 
-In the output, you'll find options to open the app in a
+* 🖼️ **OCR Image Scan**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+  * Upload product image
+  * Extract ingredients using OCR (EasyOCR)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+* 🤖 **AI-Based Hazard Detection**
 
-## Get a fresh project
+  * Detects:
 
-When you're ready, run:
+    * Added Sugar
+    * Preservatives
+    * Artificial Colors
+    * Emulsifiers
+    * Processed Fats
+    * Artificial Sweeteners
+    * Flavor Enhancers
+
+* 🧴 **Dual Mode Support**
+
+  * Food Products
+  * Personal Care Products
+
+* ⚡ **Real-time Analysis**
+
+  * FastAPI backend with Transformer models
+
+---
+
+## 🏗️ Tech Stack
+
+* **Frontend:** React Native (Expo)
+* **Backend:** FastAPI (Python)
+* **ML Models:** DistilBERT (HuggingFace Transformers)
+* **OCR:** EasyOCR
+* **APIs:** OpenFoodFacts
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
 
 ```bash
-npm run reset-project
+git clone https://github.com/your-username/ingredient-hazard-detection.git
+cd ingredient-hazard-detection
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+### 2️⃣ Backend Setup
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate   # Windows
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+pip install -r requirements.txt
+```
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+### 3️⃣ Run Backend Server
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+---
+
+### 4️⃣ Frontend Setup
+
+```bash
+cd ../frontend
+npm install
+npx expo start
+```
+
+---
+
+### 5️⃣ Configure API URL
+
+Update:
+
+```
+constants/api.ts
+```
+
+```ts
+const API_BASE_URL = "http://YOUR_IP:8000";
+```
+
+---
+
+## 🤖 Models Used
+
+* Food Model:
+  `naajissiddiqui/ingredient-hazard-distilbert`
+
+* Cosmetic Model:
+  `naajissiddiqui/personalcare_detection`
+
+---
+
+## 🔄 System Flow
+
+1. User scans barcode OR uploads image
+2. Ingredients extracted (API / OCR)
+3. Text preprocessing
+4. Passed to ML model
+5. Risk analysis generated
+6. Results displayed in app
+
+---
+
+## ⚠️ Notes
+
+* Ensure phone and backend are on same network (for local testing)
+* First model load may take time (downloads from HuggingFace)
+* Recommended to run once before demo
+
+---
+
+## 📌 Future Improvements
+
+* Multilingual ingredient detection
+* Cloud deployment (no local backend needed)
+* Explainable AI insights
+* Personalized health recommendations
+
+---
+
+## 👨‍💻 Author
+
+Naajis Siddiqui
+
+---
+
+## 📄 License
+
+This project is for academic and research purposes.
+
