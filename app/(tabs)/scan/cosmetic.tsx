@@ -61,7 +61,7 @@ export default function CosmeticScanOptionsScreen() {
               <TouchableOpacity
                 activeOpacity={0.85}
                 style={styles.primaryButton}
-                onPress={() => router.push("/scan/cosmetic")}
+                onPress={() => router.push("/scan/barcode-cosmetic")}
               >
                 <Text style={styles.primaryButtonText}>Scan Now</Text>
                 <Ionicons name="barcode-outline" size={22} color="#fff" />
@@ -86,7 +86,7 @@ export default function CosmeticScanOptionsScreen() {
               <TouchableOpacity
                 activeOpacity={0.85}
                 style={styles.secondaryButton}
-                onPress={() => router.push("/scan/cosmetic")}
+                onPress={() => router.push("/scan/ocr-cosmetic")}
               >
                 <Text style={styles.secondaryButtonText}>Scan Label</Text>
                 <Ionicons

@@ -28,13 +28,13 @@ export default function HomeScreen() {
         </LinearGradient>
 
         <Text style={[styles.title, { fontSize: isDesktop ? 50 : 32 }]}>
-          AI-Driven Safety Prediction{"\n"}
-          <Text style={styles.titleBlue}>for Drugs & Food</Text>
+          AI-Driven Ingredient{"\n"}
+          <Text style={styles.titleBlue}>Safety Analysis</Text>
         </Text>
 
         <Text style={styles.subtitle}>
-          Automated machine learning system to detect drug interactions and
-          hazardous food ingredients with confidence scoring.
+          AI system that scans product labels and barcodes to detect harmful
+          ingredients, analyze safety risks, and provide instant insights.
         </Text>
 
         <View
@@ -45,12 +45,7 @@ export default function HomeScreen() {
         >
           <TouchableOpacity style={styles.primaryBtn}>
             <Ionicons name="medkit" size={18} color="#fff" />
-            <Text style={styles.primaryText}> Check Drug Interactions</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.secondaryBtn}>
-            <Ionicons name="nutrition" size={18} color="#1F2A33" />
-            <Text style={styles.secondaryText}> Analyze Food Ingredients</Text>
+            <Text style={styles.primaryText}> Start Analysis</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -126,7 +121,7 @@ export default function HomeScreen() {
       >
         {[
           { value: "99.2%", label: "Prediction Accuracy" },
-          { value: "50K+", label: "Drug Combinations Analyzed" },
+          { value: "50K+", label: "Products Scanned" },
           { value: "10K+", label: "Food Ingredients Tested" },
         ].map((s, i) => (
           <View key={i} style={styles.statBlock}>

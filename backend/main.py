@@ -1,17 +1,21 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import torch
 import re
+import easyocr
+import io
+import numpy as np
+from PIL import Image
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
 app = FastAPI()
 
 # ---- Load Model Once ----
 model_path = "naajissiddiqui/ingredient-hazard-distilbert"
+ocr_reader = easyocr.Reader(["en"])
 
 tokenizer = DistilBertTokenizerFast.from_pretrained(model_path)
 model = DistilBertForSequenceClassification.from_pretrained(model_path)
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 model.eval()
@@ -25,6 +29,25 @@ label_names = [
     "artificial_sweetener",
     "flavor_enhancer"
 ]
+
+# ---- COSMETIC MODEL ----
+cosmetic_model_path = "naajissiddiqui/personalcare_detection"
+
+cosmetic_tokenizer = DistilBertTokenizerFast.from_pretrained(cosmetic_model_path)
+cosmetic_model = DistilBertForSequenceClassification.from_pretrained(cosmetic_model_path)
+cosmetic_model.to(device)
+cosmetic_model.eval()
+
+cosmetic_labels = [
+    "high_risk",
+    "moderate_risk",
+    "paraben",
+    "formaldehyde_releaser",
+    "preservative",
+    "fragrance_allergen",
+   
+]
+
 
 class IngredientInput(BaseModel):
     ingredients: str
@@ -84,6 +107,38 @@ def analyze_ingredient(ingredient, position):
 
     return hazards
 
+# ---------------------------------------------------
+# COSMETIC ANALYSIS
+# ---------------------------------------------------
+
+def analyze_cosmetic_ingredient(ingredient, threshold=0.95):
+
+    inputs = cosmetic_tokenizer(
+        ingredient,
+        return_tensors="pt",
+        truncation=True,
+        padding=True,
+        max_length=64
+    )
+
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+
+    with torch.no_grad():
+        logits = cosmetic_model(**inputs).logits
+        probs = torch.sigmoid(logits)[0].cpu()
+
+    hazards = []
+
+    for label, p in zip(cosmetic_labels, probs):
+
+        if p >= threshold:
+
+            hazards.append({
+                "label": label,
+                "confidence": float(round(float(p),3))
+            })
+
+    return hazards
 
 # -------- API ENDPOINT --------
 @app.post("/analyze")
@@ -112,3 +167,60 @@ def analyze(data: IngredientInput):
         "harmful_ingredients": results,
         "total_ingredients": len(ingredients_list)
     }
+
+
+
+# ---------------------------------------------------
+# COSMETIC API
+# ---------------------------------------------------
+
+@app.post("/analyze-cosmetic")
+
+def analyze_cosmetic(data: IngredientInput):
+
+    ingredients_list = clean_ingredients(data.ingredients)
+
+    results = []
+
+    for ing in ingredients_list:
+
+        hazards = analyze_cosmetic_ingredient(ing)
+
+        if hazards:
+            results.append({
+                "ingredient": ing,
+                "hazards": hazards
+            })
+
+    return {
+        "harmful_ingredients": results,
+        "total_ingredients": len(ingredients_list)
+    }
+
+# ---------------------------------------------------
+# OCR API
+# ---------------------------------------------------
+
+@app.post("/ocr-analyze")
+async def ocr_analyze(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+
+        image = Image.open(io.BytesIO(contents)).convert("RGB")
+        image_np = np.array(image)
+
+        results = ocr_reader.readtext(image_np)
+
+        extracted_text = " ".join([r[1] for r in results])
+
+        print("OCR TEXT:", extracted_text)
+
+        return {
+            "extracted_text": extracted_text
+        }
+
+    except Exception as e:
+        print("OCR ERROR:", str(e))
+        return {
+            "extracted_text": ""
+        }

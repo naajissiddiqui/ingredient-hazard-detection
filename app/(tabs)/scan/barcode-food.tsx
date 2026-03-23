@@ -1,3 +1,4 @@
+import API_BASE_URL from "@/constants/api";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -33,24 +34,24 @@ export default function BarcodeScannerScreen() {
       const json = await response.json();
 
       if (json.status === 1) {
-        const ingredients = json.product.ingredients_text;
+        const ingredients =
+          json.product.ingredients_text ||
+          json.product.ingredients_text_en ||
+          "";
 
         console.log("Ingredients:", ingredients);
 
         console.log("Calling backend...");
 
-        const backendResponse = await fetch(
-          "http://192.168.1.104:8000/analyze",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              ingredients: ingredients,
-            }),
+        const backendResponse = await fetch(`${API_BASE_URL}/analyze`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify({
+            ingredients: ingredients,
+          }),
+        });
 
         console.log("Backend status:", backendResponse.status);
 
