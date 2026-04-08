@@ -7,8 +7,13 @@ import io
 import numpy as np
 from PIL import Image
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
+import json
 
 app = FastAPI()
+
+
+with open("ingredient_db.json", "r") as f:
+    ingredient_db = json.load(f)
 
 # ---- Load Model Once ----
 model_path = "naajissiddiqui/ingredient-hazard-distilbert"
@@ -51,6 +56,7 @@ cosmetic_labels = [
 
 class IngredientInput(BaseModel):
     ingredients: str
+    user_conditions: list[str] = []
 
 
 # -------- CLEANING FUNCTION --------
@@ -140,6 +146,82 @@ def analyze_cosmetic_ingredient(ingredient, threshold=0.95):
 
     return hazards
 
+def get_personalized_warning(ingredient, user_conditions):
+    ing = ingredient_db.get(ingredient.lower())
+
+    if not ing:
+        return []
+
+    warnings = []
+
+    for cond in user_conditions:
+        if cond in ing.get("conditions", {}):
+            data = ing["conditions"][cond]
+
+            warnings.append({
+                "condition": cond,
+                "risk": data["risk"],
+                "reason": data["reason"]
+            })
+
+    return warnings
+
+# -------- CLEANING FUNCTION --------
+def clean_ingredients(text: str):
+    if not text:
+        return []
+
+    text = text.lower()
+
+    # 🔥 Step 1: Fix OCR mistakes (VERY IMPORTANT)
+    text = text.replace("e5o0", "e500").replace("e33o", "e330")
+
+    # 🔥 Step 2: Replace brackets with commas (KEEP CONTENT)
+    text = re.sub(r"[()]", ",", text)
+
+    # 🔥 Step 3: Replace separators
+    text = re.sub(r"[;\n]", ",", text)
+
+    # 🔥 Step 4: Remove percentages
+    text = re.sub(r"\d+,\d+%|\d+%", "", text)
+
+    # 🔥 Step 5: Remove E numbers ONLY (keep ingredient name)
+    text = re.sub(r"e\d+", "", text)
+
+    # 🔥 Step 6: Remove junk
+    text = re.sub(r"[^a-z, ]", " ", text)
+
+    # 🔥 Step 7: Normalize spaces
+    text = re.sub(r"\s+", " ", text)
+
+    # 🔥 Step 8: Split
+    raw_list = [i.strip() for i in text.split(",") if i.strip()]
+
+    # 🔥 Step 9: Remove useless words
+    blacklist = ["noodle", "soup", "flakes", "water"]
+
+    ingredients = [
+        i for i in raw_list
+        if i not in blacklist and len(i) > 2
+    ]
+
+    return ingredients
+
+def format_name(name: str):
+    return " ".join(word.capitalize() for word in name.split())
+
+# -------- FLEXIBLE MATCH --------
+def match_ingredient(ing: str, db_keys):
+    for key in db_keys:
+        if ing == key:
+            return key
+        
+    for key in db_keys:
+        if key in ing or ing in key:
+            return key
+
+    return None
+
 # -------- API ENDPOINT --------
 @app.post("/analyze")
 def analyze(data: IngredientInput):
@@ -154,19 +236,33 @@ def analyze(data: IngredientInput):
     results = []
 
     for idx, ing in enumerate(ingredients_list):
+
+        # 🔥 1. MODEL PREDICTION (KEEP ORIGINAL INGREDIENT)
         hazards = analyze_ingredient(ing, idx)
 
-        if hazards:
+        # 🔥 2. PERSONALIZED (MATCH WITH DB ONLY HERE)
+        matched_key = match_ingredient(ing, ingredient_db.keys())
+
+        personalized = []
+        if matched_key:
+            personalized = get_personalized_warning(
+                matched_key, data.user_conditions
+            )
+
+        # 🔥 3. ADD RESULT IF ANYTHING FOUND
+        if hazards or personalized:
             results.append({
-                "ingredient": ing,
+                "ingredient": format_name(ing),  # show original clean text
                 "position": idx + 1,
-                "hazards": hazards
+                "hazards": hazards,
+                "personalized": personalized
             })
 
     return {
-        "harmful_ingredients": results,
+        "results": results,
         "total_ingredients": len(ingredients_list)
     }
+
 
 
 
@@ -184,19 +280,31 @@ def analyze_cosmetic(data: IngredientInput):
 
     for ing in ingredients_list:
 
+        # 🔥 1. MODEL PREDICTION (same as before)
         hazards = analyze_cosmetic_ingredient(ing)
 
-        if hazards:
+          # 🔥 2. DB MATCH
+        matched_key = match_ingredient(ing, ingredient_db.keys())
+
+        personalized = []
+        if matched_key:
+            personalized = get_personalized_warning(
+                matched_key, data.user_conditions
+            )
+
+        # 🔥 3. FORCE INCLUDE IF ANY SIGNAL
+        if hazards or personalized or matched_key:
             results.append({
-                "ingredient": ing,
-                "hazards": hazards
+                "ingredient": format_name(ing),
+                "hazards": hazards,
+                "personalized": personalized
             })
+        print("FINAL RESULTS:", results)
 
     return {
-        "harmful_ingredients": results,
+        "results": results,
         "total_ingredients": len(ingredients_list)
     }
-
 # --------------------------------------------------
 # OCR API
 # ---------------------------------------------------
