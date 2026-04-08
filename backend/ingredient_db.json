@@ -1,0 +1,1099 @@
+{
+  "sugar": {
+    "base_risk": "HIGH",
+    "base_reason": "Raises blood sugar",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Spikes glucose"
+      }
+    }
+  },
+  "high fructose corn syrup": {
+    "base_risk": "HIGH",
+    "base_reason": "Linked to obesity",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Insulin resistance"
+      }
+    }
+  },
+  "trans fat": {
+    "base_risk": "HIGH",
+    "base_reason": "Raises LDL",
+    "conditions": {
+      "heart_disease": {
+        "risk": "HIGH",
+        "reason": "Heart risk"
+      }
+    }
+  },
+  "palm oil": {
+    "base_risk": "MODERATE",
+    "base_reason": "High saturated fat",
+    "conditions": {
+      "heart_disease": {
+        "risk": "HIGH",
+        "reason": "Cholesterol"
+      }
+    }
+  },
+  "aspartame": {
+    "base_risk": "MODERATE",
+    "base_reason": "Artificial sweetener",
+    "conditions": {
+      "diabetes": {
+        "risk": "MODERATE",
+        "reason": "Insulin impact"
+      }
+    }
+  },
+  "monosodium glutamate": {
+    "base_risk": "MODERATE",
+    "base_reason": "Flavor enhancer",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "High sodium"
+      }
+    }
+  },
+  "sodium benzoate": {
+    "base_risk": "MODERATE",
+    "base_reason": "Preservative",
+    "conditions": {
+      "asthma": {
+        "risk": "HIGH",
+        "reason": "Triggers"
+      }
+    }
+  },
+  "potassium bromate": {
+    "base_risk": "HIGH",
+    "base_reason": "Carcinogenic",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Tumor risk"
+      }
+    }
+  },
+  "bha": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Carcinogen"
+      }
+    }
+  },
+  "bht": {
+    "base_risk": "HIGH",
+    "base_reason": "Synthetic antioxidant",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Risk"
+      }
+    }
+  },
+  "artificial color": {
+    "base_risk": "HIGH",
+    "base_reason": "Hyperactivity",
+    "conditions": {
+      "adhd": {
+        "risk": "HIGH",
+        "reason": "Triggers"
+      }
+    }
+  },
+  "artificial flavor": {
+    "base_risk": "MODERATE",
+    "base_reason": "Synthetic",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Reactions"
+      }
+    }
+  },
+  "nitrate": {
+    "base_risk": "HIGH",
+    "base_reason": "Processed meat preservative",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Nitrosamines"
+      }
+    }
+  },
+  "nitrite": {
+    "base_risk": "HIGH",
+    "base_reason": "Meat additive",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Carcinogen"
+      }
+    }
+  },
+  "maltodextrin": {
+    "base_risk": "HIGH",
+    "base_reason": "High GI",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Spikes sugar"
+      }
+    }
+  },
+  "sucralose": {
+    "base_risk": "MODERATE",
+    "base_reason": "Artificial sweetener",
+    "conditions": {
+      "gut": {
+        "risk": "HIGH",
+        "reason": "Gut imbalance"
+      }
+    }
+  },
+  "acesulfame k": {
+    "base_risk": "MODERATE",
+    "base_reason": "Sweetener",
+    "conditions": {
+      "diabetes": {
+        "risk": "MODERATE",
+        "reason": "Insulin"
+      }
+    }
+  },
+  "refined flour": {
+    "base_risk": "HIGH",
+    "base_reason": "Low fiber",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "High GI"
+      }
+    }
+  },
+  "corn syrup": {
+    "base_risk": "HIGH",
+    "base_reason": "Sugar rich",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Glucose spike"
+      }
+    }
+  },
+  "hydrogenated oil": {
+    "base_risk": "HIGH",
+    "base_reason": "Trans fat",
+    "conditions": {
+      "heart_disease": {
+        "risk": "HIGH",
+        "reason": "LDL rise"
+      }
+    }
+  },
+  "caramel color": {
+    "base_risk": "MODERATE",
+    "base_reason": "Chemical compounds",
+    "conditions": {
+      "cancer": {
+        "risk": "MODERATE",
+        "reason": "Possible"
+      }
+    }
+  },
+  "yeast extract": {
+    "base_risk": "MODERATE",
+    "base_reason": "MSG source",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium"
+      }
+    }
+  },
+  "casein": {
+    "base_risk": "MODERATE",
+    "base_reason": "Milk protein",
+    "conditions": {
+      "lactose": {
+        "risk": "HIGH",
+        "reason": "Digestive issue"
+      }
+    }
+  },
+  "gluten": {
+    "base_risk": "MODERATE",
+    "base_reason": "Wheat protein",
+    "conditions": {
+      "celiac": {
+        "risk": "HIGH",
+        "reason": "Autoimmune"
+      }
+    }
+  },
+  "caffeine": {
+    "base_risk": "MODERATE",
+    "base_reason": "Stimulant",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Fetal impact"
+      }
+    }
+  },
+  "alcohol": {
+    "base_risk": "HIGH",
+    "base_reason": "Toxic",
+    "conditions": {
+      "liver": {
+        "risk": "HIGH",
+        "reason": "Damage"
+      }
+    }
+  },
+
+  "soy protein isolate": {
+    "base_risk": "MODERATE",
+    "base_reason": "Processed soy",
+    "conditions": {
+      "hormonal": {
+        "risk": "MODERATE",
+        "reason": "Estrogen"
+      }
+    }
+  },
+  "propylene glycol": {
+    "base_risk": "MODERATE",
+    "base_reason": "Additive",
+    "conditions": {
+      "kidney": {
+        "risk": "HIGH",
+        "reason": "Toxic"
+      }
+    }
+  },
+  "xanthan gum": {
+    "base_risk": "LOW",
+    "base_reason": "Thickener",
+    "conditions": {
+      "gut": {
+        "risk": "MODERATE",
+        "reason": "Bloating"
+      }
+    }
+  },
+  "guar gum": {
+    "base_risk": "LOW",
+    "base_reason": "Fiber additive",
+    "conditions": {
+      "gut": {
+        "risk": "MODERATE",
+        "reason": "Gas"
+      }
+    }
+  },
+  "lactose": {
+    "base_risk": "MODERATE",
+    "base_reason": "Milk sugar",
+    "conditions": {
+      "lactose": {
+        "risk": "HIGH",
+        "reason": "Intolerance"
+      }
+    }
+  },
+  "fructose": {
+    "base_risk": "HIGH",
+    "base_reason": "Sugar",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Glucose spike"
+      }
+    }
+  },
+  "dextrose": {
+    "base_risk": "HIGH",
+    "base_reason": "Simple sugar",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Spike"
+      }
+    }
+  },
+  "msg": {
+    "base_risk": "MODERATE",
+    "base_reason": "Flavor enhancer",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium"
+      }
+    }
+  },
+  "synthetic dye": {
+    "base_risk": "HIGH",
+    "base_reason": "Artificial color",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "preservative e211": {
+    "base_risk": "MODERATE",
+    "base_reason": "Chemical preservative",
+    "conditions": {
+      "asthma": {
+        "risk": "HIGH",
+        "reason": "Trigger"
+      }
+    }
+  },
+  "preservative e220": {
+    "base_risk": "HIGH",
+    "base_reason": "Sulfur dioxide",
+    "conditions": {
+      "asthma": {
+        "risk": "HIGH",
+        "reason": "Breathing issue"
+      }
+    }
+  },
+  "processed cheese": {
+    "base_risk": "MODERATE",
+    "base_reason": "Additives",
+    "conditions": {
+      "heart": {
+        "risk": "HIGH",
+        "reason": "Fat"
+      }
+    }
+  },
+  "instant noodles masala": {
+    "base_risk": "HIGH",
+    "base_reason": "High sodium",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Hypertension"
+      }
+    }
+  },
+  "frozen processed meat": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservatives",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Nitrites"
+      }
+    }
+  },
+  "energy drink mix": {
+    "base_risk": "HIGH",
+    "base_reason": "Caffeine + sugar",
+    "conditions": {
+      "heart": {
+        "risk": "HIGH",
+        "reason": "Stress"
+      }
+    }
+  },
+  "soft drink concentrate": {
+    "base_risk": "HIGH",
+    "base_reason": "Sugar + chemicals",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Spike"
+      }
+    }
+  },
+  "flavored syrup": {
+    "base_risk": "HIGH",
+    "base_reason": "Artificial sugar",
+    "conditions": {
+      "diabetes": {
+        "risk": "HIGH",
+        "reason": "Spike"
+      }
+    }
+  },
+  "chocolate flavor compound": {
+    "base_risk": "MODERATE",
+    "base_reason": "Artificial",
+    "conditions": {
+      "allergy": {
+        "risk": "MODERATE",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "bakery shortening": {
+    "base_risk": "HIGH",
+    "base_reason": "Trans fat",
+    "conditions": {
+      "heart": {
+        "risk": "HIGH",
+        "reason": "Cholesterol"
+      }
+    }
+  },
+  "whitener powder": {
+    "base_risk": "MODERATE",
+    "base_reason": "Processed dairy",
+    "conditions": {
+      "lactose": {
+        "risk": "HIGH",
+        "reason": "Intolerance"
+      }
+    }
+  },
+  "flavor enhancer 627": {
+    "base_risk": "MODERATE",
+    "base_reason": "Additive",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium"
+      }
+    }
+  },
+  "flavor enhancer 631": {
+    "base_risk": "MODERATE",
+    "base_reason": "Additive",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium"
+      }
+    }
+  },
+  "retinol": {
+    "base_risk": "HIGH",
+    "base_reason": "Strong active",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Vitamin A derivative, can cause irritation and unsafe in pregnancy"
+      }
+    }
+  },
+  "paraben": {
+    "base_risk": "HIGH",
+    "base_reason": "Hormone disruptor",
+    "conditions": {
+      "hormonal": {
+        "risk": "HIGH",
+        "reason": "Estrogen"
+      }
+    }
+  },
+  "formaldehyde": {
+    "base_risk": "HIGH",
+    "base_reason": "Carcinogen",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "phthalates": {
+    "base_risk": "HIGH",
+    "base_reason": "Endocrine disruptor",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Fetus"
+      }
+    }
+  },
+  "sodium lauryl sulfate": {
+    "base_risk": "HIGH",
+    "base_reason": "Harsh cleanser",
+    "conditions": {
+      "dry_skin": {
+        "risk": "HIGH",
+        "reason": "Dryness"
+      }
+    }
+  },
+  "sodium laureth sulfate": {
+    "base_risk": "MODERATE",
+    "base_reason": "Irritant",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "triclosan": {
+    "base_risk": "HIGH",
+    "base_reason": "Antibacterial",
+    "conditions": {
+      "hormonal": {
+        "risk": "HIGH",
+        "reason": "Disruption"
+      }
+    }
+  },
+  "fragrance": {
+    "base_risk": "MODERATE",
+    "base_reason": "Allergens",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "toluene": {
+    "base_risk": "HIGH",
+    "base_reason": "Solvent",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Toxic"
+      }
+    }
+  },
+  "lead": {
+    "base_risk": "HIGH",
+    "base_reason": "Heavy metal",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Brain damage"
+      }
+    }
+  },
+  "mercury": {
+    "base_risk": "HIGH",
+    "base_reason": "Neurotoxin",
+    "conditions": {
+      "brain": {
+        "risk": "HIGH",
+        "reason": "Damage"
+      }
+    }
+  },
+  "aluminum": {
+    "base_risk": "MODERATE",
+    "base_reason": "Metal",
+    "conditions": {
+      "kidney": {
+        "risk": "HIGH",
+        "reason": "Toxic"
+      }
+    }
+  },
+  "benzene": {
+    "base_risk": "HIGH",
+    "base_reason": "Carcinogen",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Risk"
+      }
+    }
+  },
+  "coal tar": {
+    "base_risk": "HIGH",
+    "base_reason": "Toxic",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "hydroquinone": {
+    "base_risk": "HIGH",
+    "base_reason": "Bleaching agent",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Damage"
+      }
+    }
+  },
+  "resorcinol": {
+    "base_risk": "HIGH",
+    "base_reason": "Thyroid disruptor",
+    "conditions": {
+      "thyroid": {
+        "risk": "HIGH",
+        "reason": "Hormone"
+      }
+    }
+  },
+  "ethanolamine": {
+    "base_risk": "MODERATE",
+    "base_reason": "Stabilizer",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "mineral oil": {
+    "base_risk": "MODERATE",
+    "base_reason": "Clogs pores",
+    "conditions": {
+      "acne": {
+        "risk": "HIGH",
+        "reason": "Blockage"
+      }
+    }
+  },
+  "silicone": {
+    "base_risk": "LOW",
+    "base_reason": "Barrier",
+    "conditions": {
+      "acne": {
+        "risk": "MODERATE",
+        "reason": "Trap dirt"
+      }
+    }
+  },
+  "peg": {
+    "base_risk": "MODERATE",
+    "base_reason": "Contaminants",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "oxybenzone": {
+    "base_risk": "HIGH",
+    "base_reason": "Hormone disruptor",
+    "conditions": {
+      "hormonal": {
+        "risk": "HIGH",
+        "reason": "Effect"
+      }
+    }
+  },
+  "octinoxate": {
+    "base_risk": "HIGH",
+    "base_reason": "UV filter",
+    "conditions": {
+      "hormonal": {
+        "risk": "HIGH",
+        "reason": "Disruption"
+      }
+    }
+  },
+  "butylated hydroxytoluene": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Risk"
+      }
+    }
+  },
+  "imidazolidinyl urea": {
+    "base_risk": "HIGH",
+    "base_reason": "Formaldehyde releaser",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Allergy"
+      }
+    }
+  },
+  "diazolidinyl urea": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "dmdm hydantoin": {
+    "base_risk": "HIGH",
+    "base_reason": "Releases formaldehyde",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "isopropyl alcohol": {
+    "base_risk": "MODERATE",
+    "base_reason": "Drying agent",
+    "conditions": {
+      "dry_skin": {
+        "risk": "HIGH",
+        "reason": "Dryness"
+      }
+    }
+  },
+  "lanolin": {
+    "base_risk": "MODERATE",
+    "base_reason": "Animal derived",
+    "conditions": {
+      "allergy": {
+        "risk": "MODERATE",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "mica": {
+    "base_risk": "LOW",
+    "base_reason": "Shimmer",
+    "conditions": {
+      "skin": {
+        "risk": "MODERATE",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "talc": {
+    "base_risk": "HIGH",
+    "base_reason": "Asbestos risk",
+    "conditions": {
+      "cancer": {
+        "risk": "HIGH",
+        "reason": "Risk"
+      }
+    }
+  },
+  "petrolatum": {
+    "base_risk": "MODERATE",
+    "base_reason": "Petroleum",
+    "conditions": {
+      "acne": {
+        "risk": "HIGH",
+        "reason": "Clog"
+      }
+    }
+  },
+  "chlorphenesin": {
+    "base_risk": "MODERATE",
+    "base_reason": "Preservative",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "benzyl alcohol": {
+    "base_risk": "MODERATE",
+    "base_reason": "Solvent",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Reaction"
+      }
+    }
+  },
+  "phenoxyethanol": {
+    "base_risk": "MODERATE",
+    "base_reason": "Preservative",
+    "conditions": {
+      "skin": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "cocamidopropyl betaine": {
+    "base_risk": "MODERATE",
+    "base_reason": "Foaming agent",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Dermatitis"
+      }
+    }
+  },
+  "zinc oxide nanoparticles": {
+    "base_risk": "MODERATE",
+    "base_reason": "Nano particles",
+    "conditions": {
+      "skin": {
+        "risk": "MODERATE",
+        "reason": "Penetration"
+      }
+    }
+  },
+  "titanium dioxide": {
+    "base_risk": "MODERATE",
+    "base_reason": "Pigment",
+    "conditions": {
+      "respiratory": {
+        "risk": "HIGH",
+        "reason": "Inhalation"
+      }
+    }
+  },
+  "synthetic dyes": {
+    "base_risk": "HIGH",
+    "base_reason": "Artificial color",
+    "conditions": {
+      "allergy": {
+        "risk": "HIGH",
+        "reason": "Irritation"
+      }
+    }
+  },
+  "dimethicone": {
+    "base_risk": "LOW",
+    "base_reason": "Silicone",
+    "conditions": {
+      "acne": {
+        "risk": "MODERATE",
+        "reason": "Trap"
+      }
+    }
+  },
+  "sodium nitrite (ins 250)": {
+    "base_risk": "HIGH",
+    "base_reason": "Processed meat preservative",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Linked to fetal risk and nitrosamines"
+      },
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "High sodium content"
+      }
+    }
+  },
+  "sodium nitrate (ins 251)": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative in processed meats",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Nitrosamine formation risk"
+      }
+    }
+  },
+  "monosodium glutamate excess": {
+    "base_risk": "HIGH",
+    "base_reason": "Flavor enhancer in instant foods",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium overload"
+      }
+    }
+  },
+  "disodium inosinate (ins 627)": {
+    "base_risk": "HIGH",
+    "base_reason": "Flavor enhancer used with msg",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "High sodium combination"
+      }
+    }
+  },
+  "disodium guanylate (ins 631)": {
+    "base_risk": "HIGH",
+    "base_reason": "Flavor enhancer",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Increases sodium intake"
+      }
+    }
+  },
+  "vanaspati (hydrogenated vegetable oil)": {
+    "base_risk": "HIGH",
+    "base_reason": "Trans fat source",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Raises bad cholesterol"
+      },
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Affects fetal development"
+      }
+    }
+  },
+  "partially hydrogenated oil": {
+    "base_risk": "HIGH",
+    "base_reason": "Trans fat",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Cardiovascular risk"
+      }
+    }
+  },
+  "high fructose corn syrup": {
+    "base_risk": "HIGH",
+    "base_reason": "Highly processed sugar",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Gestational diabetes risk"
+      }
+    }
+  },
+  "glucose-fructose syrup": {
+    "base_risk": "HIGH",
+    "base_reason": "Refined sugar blend",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Rapid glucose spike"
+      }
+    }
+  },
+  "artificial color 102 (tartrazine)": {
+    "base_risk": "HIGH",
+    "base_reason": "Synthetic dye",
+    "conditions": {
+      "sensitive_skin": {
+        "risk": "HIGH",
+        "reason": "Allergic reactions and irritation"
+      }
+    }
+  },
+  "artificial color 110 (sunset yellow)": {
+    "base_risk": "HIGH",
+    "base_reason": "Synthetic dye",
+    "conditions": {
+      "sensitive_skin": {
+        "risk": "HIGH",
+        "reason": "Skin and allergy triggers"
+      }
+    }
+  },
+  "artificial color 129 (allura red)": {
+    "base_risk": "HIGH",
+    "base_reason": "Synthetic dye",
+    "conditions": {
+      "sensitive_skin": {
+        "risk": "HIGH",
+        "reason": "Hypersensitivity reactions"
+      }
+    }
+  },
+  "sodium benzoate (ins 211)": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Forms benzene with vitamin c"
+      },
+      "sensitive_skin": {
+        "risk": "HIGH",
+        "reason": "Allergic reactions"
+      }
+    }
+  },
+  "potassium bromate (ins 924a)": {
+    "base_risk": "HIGH",
+    "base_reason": "Dough improver",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Carcinogenic risk"
+      }
+    }
+  },
+  "bht (butylated hydroxytoluene)": {
+    "base_risk": "HIGH",
+    "base_reason": "Synthetic preservative",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Hormonal disruption"
+      }
+    }
+  },
+  "bha (butylated hydroxyanisole)": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Carcinogenic concern"
+      }
+    }
+  },
+  "sulphur dioxide (ins 220)": {
+    "base_risk": "HIGH",
+    "base_reason": "Preservative in juices/dried foods",
+    "conditions": {
+      "sensitive_skin": {
+        "risk": "HIGH",
+        "reason": "Triggers allergies and irritation"
+      }
+    }
+  },
+  "processed meat extract": {
+    "base_risk": "HIGH",
+    "base_reason": "Contains nitrates and sodium",
+    "conditions": {
+      "pregnancy": {
+        "risk": "HIGH",
+        "reason": "Linked to fetal risk"
+      },
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "High sodium"
+      }
+    }
+  },
+  "sodium carbonate": {
+    "base_risk": "HIGH",
+    "base_reason": "High sodium additive",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Raises blood pressure"
+      }
+    }
+  },
+  "sodium phosphate": {
+    "base_risk": "HIGH",
+    "base_reason": "Processed sodium salt",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Sodium load"
+      }
+    }
+  },
+  "sodium polyphosphate": {
+    "base_risk": "HIGH",
+    "base_reason": "Food additive",
+    "conditions": {
+      "hypertension": {
+        "risk": "HIGH",
+        "reason": "Excess sodium"
+      }
+    }
+  }
+}
