@@ -312,7 +312,7 @@ const ALL_CONDITIONS = [
     desc: "High blood pressure",
   },
   {
-    key: "skin_sensitivity",
+    key: "sensitive_skin",
     label: "Sensitive Skin",
     icon: "🌿",
     desc: "Eczema, dermatitis, rosacea",
@@ -514,37 +514,37 @@ export default function ProfileScreen() {
   }; // ── RENDER ────────────────────────────────────────────────────────────────
   return (
     <ScrollView style={S.container}>
-           {" "}
+           
       <View style={S.content}>
                 {/* Avatar + info */}
-                <Image source={{ uri: userImage }} style={S.avatar} />       {" "}
-        <Text style={S.name}>{user.name}</Text>       {" "}
-        <Text style={S.email}>{user.email}</Text>        {/* Stats */}       {" "}
+                <Image source={{ uri: userImage }} style={S.avatar} />       
+        <Text style={S.name}>{user.name}</Text>       
+        <Text style={S.email}>{user.email}</Text>        {/* Stats */}       
         <View style={S.statsRow}>
-                   {" "}
+                   
           <View style={S.statCard}>
-                        <Text style={S.statLabel}>Total Scans</Text>           {" "}
-            <Text style={S.statVal}>{scanHistory.length}</Text>         {" "}
+                        <Text style={S.statLabel}>Total Scans</Text>           
+            <Text style={S.statVal}>{scanHistory.length}</Text>         
           </View>
-                   {" "}
+                   
           <View style={S.statCard}>
-                        <Text style={S.statLabel}>Member Since</Text>           {" "}
-            <Text style={S.statVal}>{user.memberSince}</Text>         {" "}
+                        <Text style={S.statLabel}>Member Since</Text>           
+            <Text style={S.statVal}>{user.memberSince}</Text>         
           </View>
-                 {" "}
+                 
         </View>
-                {/* Action buttons */}       {" "}
+                {/* Action buttons */}       
         <TouchableOpacity
           style={[S.btn, { backgroundColor: "#2F80ED" }]}
           onPress={() => setEditModal(true)}
         >
-                    <Text style={S.btnText}>Edit Profile</Text>       {" "}
+                    <Text style={S.btnText}>Edit Profile</Text>       
         </TouchableOpacity>
-               {" "}
+               
         <TouchableOpacity style={[S.btn, { backgroundColor: "#EB5757" }]}>
-                    <Text style={S.btnText}>Logout</Text>       {" "}
+                    <Text style={S.btnText}>Logout</Text>       
         </TouchableOpacity>
-               {" "}
+               
         <TouchableOpacity
           style={[
             S.btn,
@@ -554,30 +554,30 @@ export default function ProfileScreen() {
           onPress={uploadReport}
           disabled={uploading}
         >
-                   {" "}
+                   
           {uploading ? (
             <View style={S.row}>
                             <ActivityIndicator color="#fff" size="small" />     
-                     {" "}
+                     
               <Text style={[S.btnText, { marginLeft: 10 }]}>
                 Analyzing report...
               </Text>
-                         {" "}
+                         
             </View>
           ) : (
             <Text style={S.btnText}>📋  Upload Health Report</Text>
           )}
-                 {" "}
+                 
         </TouchableOpacity>
-                {/* Health conditions checklist */}       {" "}
+                {/* Health conditions checklist */}       
         <View style={S.section}>
                     <Text style={S.sectionTitle}>My Health Conditions</Text>   
-               {" "}
+               
           <Text style={S.sectionSub}>
                         Toggle your conditions. This personalizes ingredient
-            risk scores for you.          {" "}
+            risk scores for you.          
           </Text>
-                   {" "}
+                   
           {ALL_CONDITIONS.map((c) => {
             const on = selected.has(c.key);
             return (
@@ -587,79 +587,78 @@ export default function ProfileScreen() {
                 onPress={() => toggle(c.key)}
                 activeOpacity={0.85}
               >
-                               {" "}
+                               
                 <View style={S.condLeft}>
                                     <Text style={S.condIcon}>{c.icon}</Text>   
-                               {" "}
+                               
                   <View>
-                                       {" "}
+                                       
                     <Text style={S.condLabel}>{c.label}</Text>                 
-                      <Text style={S.condDesc}>{c.desc}</Text>               
-                     {" "}
+                      <Text style={S.condDesc}>{c.desc}</Text>                 
                   </View>
-                                 {" "}
+                                 
                 </View>
-                               {" "}
+                               
                 <Switch
                   value={on}
                   onValueChange={() => toggle(c.key)}
                   trackColor={{ false: "#ddd", true: "#27AE60" }}
                   thumbColor="#fff"
                 />
-                             {" "}
+                             
               </TouchableOpacity>
             );
           })}
-                   {" "}
+                   
           <TouchableOpacity
             style={[S.saveHealthBtn, profileSaved && S.saveHealthBtnDone]}
             onPress={saveHealthProfile}
           >
-                       {" "}
+                       
             <Text style={S.btnText}>
               {profileSaved ? "✓  Profile Saved" : "Save Health Profile"}
             </Text>
-                     {" "}
+                     
           </TouchableOpacity>
-                   {" "}
+                   
           {selected.size > 0 && (
             <Text style={S.activeNote}>
                             {selected.size} condition
               {selected.size > 1 ? "s" : ""} active — personalized analysis on  
-                       {" "}
+                       
             </Text>
           )}
-                 {" "}
+                 
         </View>
-                {/* Scan history */}       {" "}
+                {/* Scan history */}       
         <View style={S.section}>
-                    <Text style={S.sectionTitle}>Scan History</Text>         {" "}
+                    <Text style={S.sectionTitle}>Scan History</Text>         
           {scanHistory.map((item) => (
             <View key={item.id} style={S.historyItem}>
                             <Text style={S.productName}>{item.product}</Text>   
                         <Text style={S.scanDate}>Scanned on: {item.date}</Text> 
-                       {" "}
+                       
             </View>
           ))}
-                 {" "}
+                 
         </View>
-             {" "}
+             
       </View>
-            {/* ── EDIT PROFILE MODAL ── */}     {" "}
+            {/* ── EDIT PROFILE MODAL ── */}     
       <Modal visible={editModal} animationType="slide" transparent>
-               {" "}
+               
         <View style={S.overlay}>
-                   {" "}
+                   
           <View style={S.modal}>
                         <Text style={S.modalTitle}>Edit Profile</Text>         
-             {" "}
+             
             <TextInput
               style={S.input}
               value={editName}
               onChangeText={setEditName}
               placeholder="Name"
             />
-                       {" "}
+                       
             <TextInput
               style={S.input}
               value={editEmail}
@@ -668,15 +667,15 @@ export default function ProfileScreen() {
               keyboardType="email-address"
               autoCapitalize="none"
             />
-                       {" "}
+                       
             <TouchableOpacity
               style={[S.btn, { backgroundColor: "#2F80ED", width: "100%" }]}
               onPress={handleSaveProfile}
             >
                             <Text style={S.btnText}>Save Changes</Text>         
-               {" "}
+               
             </TouchableOpacity>
-                       {" "}
+                       
             <TouchableOpacity
               style={[
                 S.btn,
@@ -684,86 +683,85 @@ export default function ProfileScreen() {
               ]}
               onPress={() => setEditModal(false)}
             >
-                            <Text style={S.btnText}>Cancel</Text>         
-               {" "}
+                            <Text style={S.btnText}>Cancel</Text>           
             </TouchableOpacity>
-                     {" "}
+                     
           </View>
-                 {" "}
+                 
         </View>
-             {" "}
+             
       </Modal>
-            {/* ── REPORT RESULTS MODAL ── */}     {" "}
+            {/* ── REPORT RESULTS MODAL ── */}     
       <Modal visible={reportModal} animationType="slide" transparent>
-               {" "}
+               
         <View style={S.overlay}>
-                   {" "}
+                   
           <View style={S.modal}>
                         <Text style={S.modalTitle}>Report Analyzed ✅</Text>   
-                   {" "}
+                   
             {reportDetected.length > 0 ? (
               <>
-                               {" "}
+                               
                 <Text style={S.reportInfo}>
                                     Detected {reportDetected.length} condition
-                  {reportDetected.length > 1 ? "s" : ""}:                {" "}
+                  {reportDetected.length > 1 ? "s" : ""}:                
                 </Text>
-                               {" "}
+                               
                 {reportDetected.map((k) => {
                   const meta = ALL_CONDITIONS.find((x) => x.key === k);
                   return (
                     <View key={k} style={S.chip}>
-                                           {" "}
+                                           
                       <Text style={S.chipIcon}>{meta?.icon ?? "•"}</Text>       
-                                   {" "}
+                                   
                       <Text style={S.chipText}>{meta?.label ?? k}</Text>       
-                                 {" "}
+                                 
                     </View>
                   );
                 })}
-                               {" "}
+                               
                 <Text style={S.reportNote}>
                                     Added to your checklist. Review and tap Save
-                  Health Profile.                {" "}
+                  Health Profile.                
                 </Text>
-                             {" "}
+                             
               </>
             ) : (
               <Text style={S.reportInfo}>
                                 No conditions detected. You can add them
-                manually via the checklist.              {" "}
+                manually via the checklist.              
               </Text>
             )}
-                       {" "}
+                       
             {reportOcrText.length > 0 && (
               <View style={S.ocrBox}>
                                 <Text style={S.ocrLabel}>Extracted text:</Text> 
-                             {" "}
+                             
                 <Text style={S.ocrText} numberOfLines={4}>
                   {reportOcrText}
                 </Text>
-                             {" "}
+                             
               </View>
             )}
-                       {" "}
+                       
             <Text style={S.aiNote}>
-                            Detection method:{" "}
-              {reportAiUsed ? "AI Model" : "Keyword Matching"}           {" "}
+                            Detection method:
+              {reportAiUsed ? "AI Model" : "Keyword Matching"}           
             </Text>
-                       {" "}
+                       
             <TouchableOpacity
               style={[S.btn, { backgroundColor: "#2F80ED", width: "100%" }]}
               onPress={() => setReportModal(false)}
             >
-                            <Text style={S.btnText}>Done</Text>           {" "}
+                            <Text style={S.btnText}>Done</Text>           
             </TouchableOpacity>
-                     {" "}
+                     
           </View>
-                 {" "}
+                 
         </View>
-             {" "}
+             
       </Modal>
-         {" "}
+         
     </ScrollView>
   );
 }

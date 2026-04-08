@@ -6,7 +6,7 @@ export default function ResultsScreen() {
 
   const parsed = typeof analysis === "string" ? JSON.parse(analysis) : null;
 
-  const harmful = parsed?.harmful_ingredients || [];
+  const harmful = parsed?.results || [];
   const totalIngredients = parsed?.total_ingredients || 0;
 
   const harmfulCount = harmful.length;
@@ -111,6 +111,15 @@ export default function ResultsScreen() {
               <Text style={styles.description}>
                 Detected as {label.replaceAll("_", " ")}
               </Text>
+
+              {/* 🔥 ADD THIS BELOW */}
+              {item.personalized &&
+                item.personalized.length > 0 &&
+                item.personalized.map((p: any, i: number) => (
+                  <Text key={i} style={{ color: "#E74C3C", marginTop: 6 }}>
+                    ⚠️ Not safe for {p.condition.toUpperCase()} — {p.reason}
+                  </Text>
+                ))}
             </View>
           );
         })

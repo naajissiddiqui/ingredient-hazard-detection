@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
 });*/
 
 import API_BASE_URL from "@/constants/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -159,6 +160,16 @@ export default function OCRScreen() {
 
       const extractedText = ocrData.extracted_text;
 
+      const storedConditions = await AsyncStorage.getItem(
+        "user_health_conditions",
+      );
+
+      const userConditions = storedConditions
+        ? JSON.parse(storedConditions)
+        : [];
+
+      console.log("USER CONDITIONS:", userConditions);
+
       const analyzeRes = await fetch(`${API_BASE_URL}/analyze-cosmetic`, {
         method: "POST",
         headers: {
@@ -166,10 +177,13 @@ export default function OCRScreen() {
         },
         body: JSON.stringify({
           ingredients: extractedText,
+          user_conditions: userConditions,
         }),
       });
 
       const analyzeData = await analyzeRes.json();
+      console.log("COSMETIC ANALYSIS:", analyzeData);
+      console.log("SENDING CONDITIONS:", userConditions);
 
       router.replace({
         pathname: "/scan/results",

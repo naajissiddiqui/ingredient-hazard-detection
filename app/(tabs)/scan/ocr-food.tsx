@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
 });*/
 
 import API_BASE_URL from "@/constants/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -110,7 +111,6 @@ import {
   Text,
   View,
 } from "react-native";
-
 export default function OCRScreen() {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
@@ -158,6 +158,18 @@ export default function OCRScreen() {
       console.log("OCR DATA:", ocrData);
 
       const extractedText = ocrData.extracted_text;
+      console.log("OCR TEXT:", extractedText);
+
+      // 🔹 STEP 2: GET USER CONDITIONS FROM PROFILE
+      const storedConditions = await AsyncStorage.getItem(
+        "user_health_conditions",
+      );
+
+      const userConditions = storedConditions
+        ? JSON.parse(storedConditions)
+        : [];
+
+      console.log("USER CONDITIONS:", userConditions);
 
       const analyzeRes = await fetch(`${API_BASE_URL}/analyze`, {
         method: "POST",
@@ -166,10 +178,12 @@ export default function OCRScreen() {
         },
         body: JSON.stringify({
           ingredients: extractedText,
+          user_conditions: userConditions,
         }),
       });
 
       const analyzeData = await analyzeRes.json();
+      console.log("FINAL ANALYSIS:", analyzeData);
 
       router.replace({
         pathname: "/scan/results",

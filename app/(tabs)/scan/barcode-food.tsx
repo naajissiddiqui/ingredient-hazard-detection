@@ -1,4 +1,5 @@
 import API_BASE_URL from "@/constants/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -41,6 +42,16 @@ export default function BarcodeScannerScreen() {
 
         console.log("Ingredients:", ingredients);
 
+        const storedConditions = await AsyncStorage.getItem(
+          "user_health_conditions",
+        );
+
+        const userConditions = storedConditions
+          ? JSON.parse(storedConditions)
+          : [];
+
+        console.log("USER CONDITIONS:", userConditions);
+
         console.log("Calling backend...");
 
         const backendResponse = await fetch(`${API_BASE_URL}/analyze`, {
@@ -50,6 +61,7 @@ export default function BarcodeScannerScreen() {
           },
           body: JSON.stringify({
             ingredients: ingredients,
+            user_conditions: userConditions,
           }),
         });
 
