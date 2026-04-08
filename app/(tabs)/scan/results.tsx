@@ -117,7 +117,7 @@ export default function ResultsScreen() {
                 item.personalized.length > 0 &&
                 item.personalized.map((p: any, i: number) => (
                   <Text key={i} style={{ color: "#E74C3C", marginTop: 6 }}>
-                    ⚠️ Not safe for {p.condition.toUpperCase()} — {p.reason}
+                    ⚠️ Not safe for {p.condition.toUpperCase()} : {p.reason}
                   </Text>
                 ))}
             </View>

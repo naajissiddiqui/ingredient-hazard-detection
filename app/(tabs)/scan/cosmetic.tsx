@@ -50,7 +50,7 @@ export default function CosmeticScanOptionsScreen() {
         </View>
 
         {/* CARD 1 */}
-        <View style={styles.card}>
+        {/* <View style={styles.card}>
           <View style={styles.cardRow}>
             <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>Scan by Barcode</Text>
@@ -72,33 +72,41 @@ export default function CosmeticScanOptionsScreen() {
               <Ionicons name="barcode" size={70} color="#6B9AC4" />
             </View>
           </View>
-        </View>
+        </View> */}
 
         {/* CARD 2 */}
-        <View style={styles.card}>
-          <View style={styles.cardRow}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.cardTitle}>Scan Ingredient Label</Text>
-              <Text style={styles.cardDescription}>
-                Detect parabens, sulfates & harmful ingredients.
-              </Text>
+        {/* CARD 2 */}
+        <View style={[styles.card, { minHeight: 220 }]}>
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={styles.cardTitle}>Scan Product</Text>
 
-              <TouchableOpacity
-                activeOpacity={0.85}
-                style={styles.secondaryButton}
-                onPress={() => router.push("/scan/ocr-cosmetic")}
-              >
-                <Text style={styles.secondaryButtonText}>Scan Label</Text>
-                <Ionicons
-                  name="document-text-outline"
-                  size={22}
-                  color="#6B9AC4"
-                />
-              </TouchableOpacity>
-            </View>
+            <Text
+              style={[
+                styles.cardDescription,
+                { textAlign: "center", marginTop: 6 },
+              ]}
+            >
+              Detect parabens, sulfates & harmful ingredients.
+            </Text>
 
-            <View style={styles.iconBoxDark}>
-              <Ionicons name="flask" size={60} color="#fff" />
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={[styles.secondaryButton, { marginTop: 14 }]}
+              onPress={() => router.push("/scan/ocr-cosmetic")}
+            >
+              <Text style={styles.secondaryButtonText}>Scan Label</Text>
+              <Ionicons
+                name="document-text-outline"
+                size={22}
+                color="#6B9AC4"
+              />
+            </TouchableOpacity>
+
+            {/* ICON BELOW */}
+            <View style={[styles.iconBoxDark, { marginTop: 16 }]}>
+              <Ionicons name="flask" size={50} color="#fff" />
             </View>
           </View>
         </View>
@@ -171,7 +179,7 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: "#fff",
-    borderRadius: 20,
+    borderRadius: 16,
     padding: 20,
     marginBottom: 20,
 
@@ -241,6 +249,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#E5EDF1",
     paddingVertical: 14,
+    paddingHorizontal: 20,
+    minWidth: 180,
     borderRadius: 14,
     gap: 8,
   },
