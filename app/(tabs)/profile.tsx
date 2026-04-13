@@ -1,8 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
-  Image,
   Modal,
   ScrollView,
   StyleSheet,
@@ -12,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import API_BASE_URL from "../../constants/api";
 
 // ─── Storage keys ─────────────────────────────
 const KEYS = {
@@ -83,10 +85,11 @@ const readProfile = async () => {
 
 // ─── MAIN COMPONENT ──────────────────────────
 export default function ProfileScreen() {
+  const router = useRouter();
   const [user, setUser] = useState({
-    name: "Munira",
-    email: "munira@email.com",
-    memberSince: "January 2024",
+    name: "",
+    email: "",
+    memberSince: "",
   });
 
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -108,6 +111,32 @@ export default function ProfileScreen() {
         setEditName(prof.name);
         setEditEmail(prof.email);
       }
+      const storedUser = await AsyncStorage.getItem("user");
+
+      if (storedUser) {
+        const parsed = JSON.parse(storedUser);
+        setUser(parsed);
+        setEditName(parsed.name);
+        setEditEmail(parsed.email);
+      }
+      // 🔥 FETCH conditions from backend
+      const token = await AsyncStorage.getItem("token");
+
+      if (token) {
+        try {
+          const res = await axios.get(`${API_BASE_URL}/get-profile`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (res.data.conditions) {
+            setSelected(new Set(res.data.conditions));
+          }
+        } catch (err) {
+          console.log("Error fetching profile:", err);
+        }
+      }
     })();
   }, []);
 
@@ -124,13 +153,17 @@ export default function ProfileScreen() {
 
   // Save health profile
   const saveHealthProfile = async () => {
-    await persistConditions(Array.from(selected));
+    const token = await AsyncStorage.getItem("token");
+
+    await axios.post(`${API_BASE_URL}/save-profile`, Array.from(selected), {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     setProfileSaved(true);
 
-    Alert.alert(
-      "Saved",
-      `${selected.size} condition(s) saved. Personalized analysis ON`,
-    );
+    Alert.alert("Saved", "Health profile updated!");
   };
 
   // Save profile
@@ -144,23 +177,11 @@ export default function ProfileScreen() {
   return (
     <ScrollView style={S.container}>
       <View style={S.content}>
-        <Image
-          source={{
-            uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-          }}
-          style={S.avatar}
-        />
-
         <Text style={S.name}>{user.name}</Text>
         <Text style={S.email}>{user.email}</Text>
 
         {/* Stats */}
         <View style={S.statsRow}>
-          <View style={S.statCard}>
-            <Text style={S.statLabel}>Total Scans</Text>
-            <Text style={S.statVal}>0</Text>
-          </View>
-
           <View style={S.statCard}>
             <Text style={S.statLabel}>Member Since</Text>
             <Text style={S.statVal}>{user.memberSince}</Text>
@@ -168,14 +189,15 @@ export default function ProfileScreen() {
         </View>
 
         {/* Buttons */}
-        <TouchableOpacity
-          style={[S.btn, { backgroundColor: "#2F80ED" }]}
-          onPress={() => setEditModal(true)}
-        >
-          <Text style={S.btnText}>Edit Profile</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity style={[S.btn, { backgroundColor: "#EB5757" }]}>
+        <TouchableOpacity
+          style={[S.btn, { backgroundColor: "#EB5757" }]}
+          onPress={async () => {
+            await AsyncStorage.removeItem("token");
+            await AsyncStorage.removeItem("user");
+            router.replace("/auth");
+          }}
+        >
           <Text style={S.btnText}>Logout</Text>
         </TouchableOpacity>
 
@@ -262,7 +284,7 @@ const S = StyleSheet.create({
   name: { fontSize: 22, fontWeight: "600" },
   email: { color: "#777", marginBottom: 20 },
 
-  statsRow: { flexDirection: "row", width: "90%", gap: 10 },
+  statsRow: { flexDirection: "row", width: "50%", gap: 10 },
   statCard: {
     flex: 1,
     backgroundColor: "#fff",
