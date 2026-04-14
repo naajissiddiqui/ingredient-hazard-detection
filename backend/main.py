@@ -8,8 +8,11 @@ import numpy as np
 from PIL import Image
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 import json
+import os
+from routes.auth import router as auth_router
 
 app = FastAPI()
+app.include_router(auth_router)
 
 
 with open("ingredient_db.json", "r") as f:
