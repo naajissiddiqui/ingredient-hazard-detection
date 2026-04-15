@@ -48,3 +48,5 @@ __pycache__/
 
 backend/distilbert-base-uncased/
 backend/personalcare_detection/
+
+*.env
