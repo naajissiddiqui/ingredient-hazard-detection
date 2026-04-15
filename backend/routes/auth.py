@@ -9,11 +9,11 @@ from dotenv import load_dotenv
 from database import users_collection, profiles_collection
 
 
-load_dotenv()   # 👈 load .env
+load_dotenv()   
 
 router = APIRouter()
 
-SECRET_KEY = os.getenv("SECRET_KEY")   # ✅ from .env
+SECRET_KEY = os.getenv("SECRET_KEY") 
 ALGORITHM = "HS256"
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

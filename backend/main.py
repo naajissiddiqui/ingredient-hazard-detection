@@ -102,7 +102,7 @@ def analyze_ingredient(ingredient, position):
     hazards = []
 
     for i, p in enumerate(probs):
-        if p >= 0.5:   # lowered threshold slightly from 0.6
+        if p >= 0.5:  
             hazards.append({
                 "label": label_names[i],
                 "confidence": float(round(p, 3))
