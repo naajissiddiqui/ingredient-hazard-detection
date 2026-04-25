@@ -28,9 +28,15 @@ export default function BarcodeScannerScreen() {
     console.log("Barcode:", data);
 
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+
       const response = await fetch(
         `https://world.openfoodfacts.org/api/v0/product/${data}.json`,
+        { signal: controller.signal },
       );
+
+      clearTimeout(timeout);
 
       const json = await response.json();
 
@@ -67,6 +73,11 @@ export default function BarcodeScannerScreen() {
 
         console.log("Backend status:", backendResponse.status);
 
+        if (!backendResponse.ok) {
+          console.log("Backend failed:", backendResponse.status);
+          setScanned(false);
+          return;
+        }
         const result = await backendResponse.json();
 
         console.log("Backend result:", result);
