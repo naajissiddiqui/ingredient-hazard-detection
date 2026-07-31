@@ -3,7 +3,6 @@
 
 An AI-powered mobile application that analyzes food and personal care products to detect harmful ingredients using barcode scanning and OCR.
 
-
 ---
 
 ## 🚀 Features
