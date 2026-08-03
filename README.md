@@ -5,6 +5,7 @@ An AI-powered mobile application that analyzes food and personal care products t
 
 ---
 
+
 ## 🚀 Features
 
 * 📷 **Barcode Scanning**
